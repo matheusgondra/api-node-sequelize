@@ -1,9 +1,15 @@
+const { Op } = require("sequelize");
 const database = require("../models");
 
 class TurmaController {
 	static async getAllSchoolClasses(req, res) {
+		const { initial_date, final_date } = req.query;
+		const where = {};
+		initial_date || final_date ? where.data_inicio = {} : null;
+		initial_date ? where.data_inicio[Op.gte] = initial_date : null;
+		final_date ? where.data_inicio[Op.lte] = final_date : null;
 		try {
-			const allSchoolClasses = await database.Turmas.findAll();
+			const allSchoolClasses = await database.Turmas.findAll({ where });
 			return res.status(200).json(allSchoolClasses);
 		} catch (error) {
 			return res.status(500).json(error.message);
