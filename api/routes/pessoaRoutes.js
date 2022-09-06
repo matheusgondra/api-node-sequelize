@@ -9,6 +9,8 @@ router
 	.get("/pessoas/:id", PessoaController.getPerson)
 	.get("/pessoas/:studentId/matricula", PessoaController.getAllRegistrations)
 	.get("/pessoas/:studentId/matricula/:registrationId", PessoaController.getRegistration)
+	.get("/pessoas/matricula/:schoolClassId/confirmadas", PessoaController.getAllRegistrationsBySchoolClass)
+	.get("/pessoas/matricula/lotada", PessoaController.getCrowdedSchoolClass)
 	.post("/pessoas", PessoaController.createPerson)
 	.post("/pessoas/:id/restaura", PessoaController.restorePerson)
 	.post("/pessoas/:studentId/matricula", PessoaController.createRegistration)

@@ -1,4 +1,5 @@
 const database = require("../models");
+const Sequelize = require("sequelize");
 
 class PessoaController {
 	static async getActivePeople(req, res) {
@@ -67,6 +68,40 @@ class PessoaController {
 			const person = await database.Pessoas.findOne({ where: {id: Number(studentId)}});
 			const registrations = await person.getAulasMatriculadas();
 			return res.status(200).json(registrations);
+		} catch (error) {
+			return res.status(500).json(error.message);
+		}
+	}
+
+	static async getAllRegistrationsBySchoolClass(req, res) {
+		const { schoolClassId } = req.params;
+		try {
+			const allRegistrations = await database.Matriculas.findAndCountAll({
+				where: {
+					turma_id: Number(schoolClassId),
+					status: "confirmado"
+				},
+				limit: 20,
+				order: [["estudante_id", "DESC"]]
+			});
+			return res.status(200).json(allRegistrations);
+		} catch (error) {
+			return res.status(500).json(error.message);
+		}
+	}
+
+	static async getCrowdedSchoolClass(req, res) {
+		const crowdedSchoolClass = 2;
+		try {
+			const allCrowdedSchoolClass = await database.Matriculas.findAndCountAll({
+				where: {
+					status: "confirmado"
+				},
+				attributes: ["turma_id"],
+				group: "turma_id",
+				having: Sequelize.literal(`COUNT(turma_id) >= ${crowdedSchoolClass}`)
+			});
+			return res.status(200).json(allCrowdedSchoolClass.count);
 		} catch (error) {
 			return res.status(500).json(error.message);
 		}
