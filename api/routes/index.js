@@ -1,8 +1,8 @@
 const express = require("express");
 const cors = require("cors");
-const pessoas = require("./pessoaRoutes");
-const niveis = require("./niveisRoutes");
-const turmas = require("./turmasRoutes");
+const pessoas = require("./peopleRoutes");
+const niveis = require("./levelsRoutes");
+const turmas = require("./schoolClassRoutes");
 
 module.exports = app => {
     app.use(
