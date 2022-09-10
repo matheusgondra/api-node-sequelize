@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
-const database = require("../models");
+const { SchoolClassServices } = require("../services");
+const schoolClassServices = new SchoolClassServices();
 
 class TurmaController {
 	static async getAllSchoolClasses(req, res) {
@@ -9,7 +10,7 @@ class TurmaController {
 		initial_date ? where.data_inicio[Op.gte] = initial_date : null;
 		final_date ? where.data_inicio[Op.lte] = final_date : null;
 		try {
-			const allSchoolClasses = await database.Turmas.findAll({ where });
+			const allSchoolClasses = await schoolClassServices.getAllRegisters(where);
 			return res.status(200).json(allSchoolClasses);
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -19,7 +20,7 @@ class TurmaController {
 	static async getSchoolClass(req, res) {
 		const { id } = req.params;
 		try {
-			const schoolClass = await database.Turmas.findOne({ where: { id: Number(id) } });
+			const schoolClass = await schoolClassServices.getRegister({ id });
 			return res.status(200).json(schoolClass);
 		} catch (error) {
 			return res.status(404).json(error.message);
@@ -29,7 +30,7 @@ class TurmaController {
 	static async createSchoolClass(req, res) {
 		const newSchoolClass = req.body;
 		try {
-			const createdSchoolClass = await database.Turmas.create(newSchoolClass);
+			const createdSchoolClass = await schoolClassServices.createRegister(newSchoolClass);
 			return res.status(201).json(createdSchoolClass);
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -40,8 +41,8 @@ class TurmaController {
 		const { id } = req.params;
 		const updatedData = req.body;
 		try {
-			await database.Turmas.update(updatedData, { where: { id: Number(id) } });
-			const updatedSchoolClass = await database.Turmas.findOne({ where: { id: Number(id) } });
+			await schoolClassServices.updateRegister(updatedData);
+			const updatedSchoolClass = await schoolClassServices.getRegister({ id });
 			return res.status(200).json(updatedSchoolClass);
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -51,7 +52,7 @@ class TurmaController {
 	static async deleteSchoolClass(req, res) {
 		const { id } = req.params;
 		try {
-			await database.Turmas.destroy({ where: { id: Number(id) } });
+			await schoolClassServices.deleteRegister(id);
 			return res.status(200).json({ menssage: `id ${id} deletado com sucesso` });
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -61,7 +62,7 @@ class TurmaController {
 	static async restoreSchoolClass(req, res) {
 		const { id } = req.params;
 		try {
-			await database.Turmas.restore({ where: { id: Number(id) } });
+			await schoolClassServices.restoreRegister(id);
 			return res.status(200).json({ menssagem: `id ${id} restaurado` });
 		} catch (error) {
 			return res.status(500).json(error.message);
