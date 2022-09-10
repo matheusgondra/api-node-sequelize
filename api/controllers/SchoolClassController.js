@@ -2,7 +2,7 @@ const { Op } = require("sequelize");
 const { SchoolClassServices } = require("../services");
 const schoolClassServices = new SchoolClassServices();
 
-class TurmaController {
+class SchoolClassController {
 	static async getAllSchoolClasses(req, res) {
 		const { initial_date, final_date } = req.query;
 		const where = {};
@@ -70,4 +70,4 @@ class TurmaController {
 	}
 }
 
-module.exports = TurmaController;
+module.exports = SchoolClassController;

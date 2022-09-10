@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const { ResgistrationsServices } = require("../services");
 const registrationsServices = new ResgistrationsServices();
 
-class RegistrationsController {
+class RegistrationController {
 	static async getRegistration(req, res) {
 		const { studentId, registrationId } = req.params;
 		try {
@@ -87,4 +87,4 @@ class RegistrationsController {
 	}
 }
 
-module.exports = RegistrationsController;
+module.exports = RegistrationController;

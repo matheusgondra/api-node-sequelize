@@ -1,14 +1,14 @@
 const { Router } = require("express");
-const NivelController = require("../controllers/NivelController");
+const LevelController = require("../controllers/LevelController");
 
 const router = Router();
 
 router
-	.get("/niveis", NivelController.getAllLevels)
-	.get("/niveis/:id",NivelController.getLevel)
-	.post("/niveis", NivelController.createLevel)
-	.put("/niveis/:id", NivelController.updateLevel)
-	.delete("/niveis/:id", NivelController.deleteLevel)
-	.post("/niveis/:id/restaura", NivelController.restoreLevel);
+	.get("/niveis", LevelController.getAllLevels)
+	.get("/niveis/:id",LevelController.getLevel)
+	.post("/niveis", LevelController.createLevel)
+	.put("/niveis/:id", LevelController.updateLevel)
+	.delete("/niveis/:id", LevelController.deleteLevel)
+	.post("/niveis/:id/restaura", LevelController.restoreLevel);
 
 module.exports = router;

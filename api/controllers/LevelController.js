@@ -1,7 +1,7 @@
 const Services = require("../services/Services");
 const levelServices = new Services("Niveis");
 
-class NivelController {
+class LevelController {
 	static async getAllLevels(req, res) {
 		try {
 			const allLevels = await levelServices.getAllRegisters();
@@ -64,4 +64,4 @@ class NivelController {
 	}
 }
 
-module.exports = NivelController;
+module.exports = LevelController;

@@ -1,7 +1,7 @@
 const { PeopleServices } = require("../services");
 const peopleServices = new PeopleServices();
 
-class PessoaController {
+class PersonController {
 	static async getActivePeople(req, res) {
 		try {
 			const allPeople = await peopleServices.getRegisterActive();
@@ -92,4 +92,4 @@ class PessoaController {
 	}
 }
 
-module.exports = PessoaController;
+module.exports = PersonController;
