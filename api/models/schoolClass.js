@@ -3,25 +3,25 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Turmas extends Model {
+  class SchoolClass extends Model {
     static associate(models) {
-      Turmas.hasMany(models.Matriculas, {
+      SchoolClass.hasMany(models.Matriculas, {
         foreignKey: "turma_id"
       });
-      Turmas.belongsTo(models.Pessoas, {
+      SchoolClass.belongsTo(models.Pessoas, {
         foreignKey: "docente_id"
       });
-      Turmas.belongsTo(models.Niveis, {
+      SchoolClass.belongsTo(models.Niveis, {
         foreignKey: "nivel_id"
       });
     }
   }
-  Turmas.init({
+  SchoolClass.init({
     data_inicio: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'Turmas',
     paranoid: true
   });
-  return Turmas;
+  return SchoolClass;
 };

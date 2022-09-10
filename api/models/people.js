@@ -3,19 +3,19 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Pessoas extends Model {
+  class People extends Model {
     static associate(models) {
-      Pessoas.hasMany(models.Turmas, {
+      People.hasMany(models.Turmas, {
         foreignKey: "docente_id"
       });
-      Pessoas.hasMany(models.Matriculas, {
+      People.hasMany(models.Matriculas, {
         foreignKey: "estudante_id",
         scope: { status: "confirmado" },
         as: "aulasMatriculadas"
       })
     }
   }
-  Pessoas.init({
+  People.init({
     nome: {
       type: DataTypes.STRING,
       validate: {
@@ -44,5 +44,5 @@ module.exports = (sequelize, DataTypes) => {
     defaultScope: { where: { ativo: true } },
     scopes: { todos: { where: {} } }
   });
-  return Pessoas;
+  return People;
 };
