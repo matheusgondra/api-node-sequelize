@@ -1,5 +1,6 @@
 "use strict";
-module.exports = {
+
+export default {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn("Pessoas", "deletedAt", {
       allowNull: true,

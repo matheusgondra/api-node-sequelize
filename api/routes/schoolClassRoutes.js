@@ -1,5 +1,5 @@
-const { Router } = require("express");
-const SchoolClassController = require("../controllers/SchoolClassController");
+import { Router } from "express";
+import SchoolClassController from "../controllers/SchoolClassController.js";
 
 const router = Router();
 
@@ -11,4 +11,4 @@ router
 	.delete("/turmas/:id", SchoolClassController.deleteSchoolClass)
 	.post("/turmas/:id/restaura", SchoolClassController.restoreSchoolClass);
 
-module.exports = router;
+export default router;

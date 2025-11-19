@@ -1,11 +1,11 @@
-const PeopleServices = require("./PeopleServices");
-const LevelsServices = require("./LevelsServices");
-const SchoolClassServices = require("./SchoolClassServices");
-const ResgistrationsServices = require("./ResgistrationsServices");
+import PeopleServices from "./PeopleServices.js";
+import LevelsServices from "./LevelsServices.js";
+import SchoolClassServices from "./SchoolClassServices.js";
+import ResgistrationsServices from "./ResgistrationsServices.js";
 
-module.exports = {
-    PeopleServices: PeopleServices,
-    LevelsServices: LevelsServices,
-    SchoolClassServices: SchoolClassServices,
-	 ResgistrationsServices: ResgistrationsServices
+export {
+    PeopleServices,
+    LevelsServices,
+    SchoolClassServices,
+    ResgistrationsServices
 }

@@ -1,5 +1,6 @@
-const Sequelize = require("sequelize");
-const { ResgistrationsServices } = require("../services");
+import { literal } from "sequelize";
+import { ResgistrationsServices } from "../services/index.js";
+
 const registrationsServices = new ResgistrationsServices();
 
 class RegistrationController {
@@ -77,7 +78,7 @@ class RegistrationController {
 					{
 						attributes: ["turma_id"],
 						group: ["turma_id"],
-						having: Sequelize.literal(`count(turma_id) >= ${crowdedSchoolClass}`),
+						having: literal(`count(turma_id) >= ${crowdedSchoolClass}`),
 					}
 				);
 			return res.status(200).json(allCrowdedSchoolClass.count);
@@ -87,4 +88,4 @@ class RegistrationController {
 	}
 }
 
-module.exports = RegistrationController;
+export default RegistrationController;

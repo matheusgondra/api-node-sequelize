@@ -1,4 +1,5 @@
-const { PeopleServices } = require("../services");
+import { PeopleServices } from "../services/index.js";
+
 const peopleServices = new PeopleServices();
 
 class PersonController {
@@ -92,4 +93,4 @@ class PersonController {
 	}
 }
 
-module.exports = PersonController;
+export default PersonController;

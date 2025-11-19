@@ -1,4 +1,5 @@
-const Services = require("../services/Services");
+import Services from "../services/Services.js";
+
 const levelServices = new Services("Niveis");
 
 class LevelController {
@@ -64,4 +65,4 @@ class LevelController {
 	}
 }
 
-module.exports = LevelController;
+export default LevelController;

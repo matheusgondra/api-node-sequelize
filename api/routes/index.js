@@ -1,15 +1,15 @@
-const express = require("express");
-const cors = require("cors");
-const pessoas = require("./peopleRoutes");
-const niveis = require("./levelsRoutes");
-const turmas = require("./schoolClassRoutes");
+import { json } from "express";
+import cors from "cors";
+import pessoas from "./peopleRoutes.js";
+import niveis from "./levelsRoutes.js";
+import turmas from "./schoolClassRoutes.js";
 
-module.exports = app => {
+export default app => {
     app.use(
-        express.json(),
-		  cors(),
+        json(),
+		cors(),
         pessoas,
-		  niveis,
-		  turmas
+		niveis,
+		turmas
     );
 }

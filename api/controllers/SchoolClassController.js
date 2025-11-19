@@ -1,5 +1,6 @@
-const { Op } = require("sequelize");
-const { SchoolClassServices } = require("../services");
+import { Op } from "sequelize";
+import { SchoolClassServices } from "../services/index.js";
+
 const schoolClassServices = new SchoolClassServices();
 
 class SchoolClassController {
@@ -70,4 +71,4 @@ class SchoolClassController {
 	}
 }
 
-module.exports = SchoolClassController;
+export default SchoolClassController;

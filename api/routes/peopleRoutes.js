@@ -1,6 +1,6 @@
-const { Router } = require("express");
-const PessoaController = require("../controllers/PersonController");
-const Registrationontroller = require("../controllers/RegistrationController");
+import { Router } from "express";
+import PessoaController from "../controllers/PersonController.js";
+import Registrationontroller from "../controllers/RegistrationController.js";
 
 const router = Router();
 
@@ -22,4 +22,4 @@ router
 	.delete("/pessoas/:id", PessoaController.deletePerson)
 	.delete("/pessoas/:studentId/matricula/:registrationId", Registrationontroller.deleteRegistration);
 
-module.exports = router;
+export default router;
