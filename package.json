@@ -9,7 +9,8 @@
     "dev": "nodemon ./api/index.js",
     "sequelize:create": "sequelize db:create",
     "sequelize:migrate": "sequelize db:migrate",
-    "sequelize:seed": "sequelize db:seed:all"
+    "sequelize:seed": "sequelize db:seed:all",
+    "format": "biome check api --write"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +25,7 @@
     "sequelize-cli": "^6.6.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.3.6",
     "nodemon": "^2.0.22"
   }
 }

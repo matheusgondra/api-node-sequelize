@@ -3,7 +3,7 @@ import { PeopleServices } from "../services/index.js";
 const peopleServices = new PeopleServices();
 
 class PersonController {
-	static async getActivePeople(req, res) {
+	static async getActivePeople(_req, res) {
 		try {
 			const allPeople = await peopleServices.getRegisterActive();
 			return res.status(200).json(allPeople);
@@ -12,7 +12,7 @@ class PersonController {
 		}
 	}
 
-	static async getAllPeople(req, res) {
+	static async getAllPeople(_req, res) {
 		try {
 			const allPeople = await peopleServices.getAllRegisters();
 			return res.status(200).json(allPeople);

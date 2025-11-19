@@ -5,7 +5,7 @@ const router = Router();
 
 router
 	.get("/turmas", SchoolClassController.getAllSchoolClasses)
-	.get("/turmas/:id",SchoolClassController.getSchoolClass)
+	.get("/turmas/:id", SchoolClassController.getSchoolClass)
 	.post("/turmas", SchoolClassController.createSchoolClass)
 	.put("/turmas/:id", SchoolClassController.updateSchoolClass)
 	.delete("/turmas/:id", SchoolClassController.deleteSchoolClass)

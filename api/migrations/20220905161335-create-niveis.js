@@ -1,27 +1,26 @@
-'use strict';
 export default {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Niveis', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
-      descr_nivel: {
-        type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
-    });
-  },
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Niveis');
-  }
+	async up(queryInterface, Sequelize) {
+		await queryInterface.createTable("Niveis", {
+			id: {
+				allowNull: false,
+				autoIncrement: true,
+				primaryKey: true,
+				type: Sequelize.INTEGER
+			},
+			descr_nivel: {
+				type: Sequelize.STRING
+			},
+			createdAt: {
+				allowNull: false,
+				type: Sequelize.DATE
+			},
+			updatedAt: {
+				allowNull: false,
+				type: Sequelize.DATE
+			}
+		});
+	},
+	async down(queryInterface, _Sequelize) {
+		await queryInterface.dropTable("Niveis");
+	}
 };

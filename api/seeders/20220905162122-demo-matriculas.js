@@ -1,7 +1,5 @@
-"use strict";
-
 export default {
-	up: (queryInterface, Sequelize) => {
+	up: (queryInterface, _Sequelize) => {
 		return queryInterface.bulkInsert(
 			"Matriculas",
 			[
@@ -10,28 +8,28 @@ export default {
 					estudante_id: 1,
 					turma_id: 1,
 					createdAt: new Date(),
-					updatedAt: new Date(),
+					updatedAt: new Date()
 				},
 				{
 					status: "confirmado",
 					estudante_id: 2,
 					turma_id: 1,
 					createdAt: new Date(),
-					updatedAt: new Date(),
+					updatedAt: new Date()
 				},
 				{
 					status: "cancelado",
 					estudante_id: 2,
 					turma_id: 2,
 					createdAt: new Date(),
-					updatedAt: new Date(),
-				},
+					updatedAt: new Date()
+				}
 			],
 			{}
 		);
 	},
 
-	down: (queryInterface, Sequelize) => {
+	down: (queryInterface, _Sequelize) => {
 		return queryInterface.bulkDelete("Matriculas", null, {});
-	},
+	}
 };

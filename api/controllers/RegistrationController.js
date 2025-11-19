@@ -7,7 +7,7 @@ class RegistrationController {
 	static async getRegistration(req, res) {
 		const { studentId, registrationId } = req.params;
 		try {
-			const registration = await registrationsServices.pegaUmRegistro({	id: registrationId, estudante_id: studentId });
+			const registration = await registrationsServices.pegaUmRegistro({ id: registrationId, estudante_id: studentId });
 			return res.status(200).json(registration);
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -29,7 +29,10 @@ class RegistrationController {
 		const { studentId, registrationId } = req.params;
 		const data = req.body;
 		try {
-			await registrationsServices.updateRegisters(data, { id: Number(registrationId), estudante_id: Number(studentId) });
+			await registrationsServices.updateRegisters(data, {
+				id: Number(registrationId),
+				estudante_id: Number(studentId)
+			});
 			return res.status(200).json({ mensagem: `id ${registrationId} atualizado` });
 		} catch (error) {
 			return res.status(500).json(error.message);
@@ -59,28 +62,27 @@ class RegistrationController {
 	static async getAllRegistrationsBySchoolClass(req, res) {
 		const { schoolClassId } = req.params;
 		try {
-			const allRegistrations =
-				await registrationsServices.findAndCountResgisters(
-					{ turma_id: Number(schoolClassId), status: "confirmado" },
-					{ limit: 20, order: [["estudante_id", "DESC"]] }
-				);
+			const allRegistrations = await registrationsServices.findAndCountResgisters(
+				{ turma_id: Number(schoolClassId), status: "confirmado" },
+				{ limit: 20, order: [["estudante_id", "DESC"]] }
+			);
 			return res.status(200).json(allRegistrations);
 		} catch (error) {
 			return res.status(500).json(error.message);
 		}
 	}
 
-	static async getCrowdedSchoolClass(req, res) {
+	static async getCrowdedSchoolClass(_req, res) {
 		const crowdedSchoolClass = 2;
 		try {
 			const allCrowdedSchoolClass = await registrationsServices.findAndCountResgisters(
-					{ status: "confirmado" },
-					{
-						attributes: ["turma_id"],
-						group: ["turma_id"],
-						having: literal(`count(turma_id) >= ${crowdedSchoolClass}`),
-					}
-				);
+				{ status: "confirmado" },
+				{
+					attributes: ["turma_id"],
+					group: ["turma_id"],
+					having: literal(`count(turma_id) >= ${crowdedSchoolClass}`)
+				}
+			);
 			return res.status(200).json(allCrowdedSchoolClass.count);
 		} catch (error) {
 			return res.status(500).json(error.message);

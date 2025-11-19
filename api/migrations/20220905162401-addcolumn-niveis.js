@@ -1,13 +1,11 @@
-"use strict";
-
 export default {
 	async up(queryInterface, Sequelize) {
 		await queryInterface.addColumn("Niveis", "deletedAt", {
 			allowNull: true,
-			type: Sequelize.DATE,
+			type: Sequelize.DATE
 		});
 	},
-	async down(queryInterface, Sequelize) {
+	async down(queryInterface, _Sequelize) {
 		await queryInterface.removeColumn("Niveis", "deletedAt");
-	},
+	}
 };

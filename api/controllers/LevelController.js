@@ -3,7 +3,7 @@ import Services from "../services/Services.js";
 const levelServices = new Services("Niveis");
 
 class LevelController {
-	static async getAllLevels(req, res) {
+	static async getAllLevels(_req, res) {
 		try {
 			const allLevels = await levelServices.getAllRegisters();
 			return res.status(200).json(allLevels);
