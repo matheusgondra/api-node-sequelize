@@ -1,8 +1,8 @@
 import { Model } from "sequelize";
 
-export default (sequelize, DataTypes) => {
+export default (sequelize: any, DataTypes: any) => {
 	class Levels extends Model {
-		static associate(models) {
+		static associate(models: any) {
 			Levels.hasMany(models.Turmas, {
 				foreignKey: "nivel_id"
 			});

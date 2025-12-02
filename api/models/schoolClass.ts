@@ -1,8 +1,8 @@
 import { Model } from "sequelize";
 
-export default (sequelize, DataTypes) => {
+export default (sequelize: any, DataTypes: any) => {
 	class SchoolClass extends Model {
-		static associate(models) {
+		static associate(models: any) {
 			SchoolClass.hasMany(models.Matriculas, {
 				foreignKey: "turma_id"
 			});

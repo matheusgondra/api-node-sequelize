@@ -1,7 +1,9 @@
 import database from "../models/index.js";
 
 class Services {
-	constructor(modelName) {
+	private modelName: any;
+
+	constructor(modelName: any) {
 		this.modelName = modelName;
 	}
 
@@ -13,27 +15,27 @@ class Services {
 		return database[this.modelName].findOne({ where });
 	}
 
-	async createRegister(data) {
+	async createRegister(data: any) {
 		return database[this.modelName].create(data);
 	}
 
-	async updateRegister(updatedData, id, transaction = {}) {
+	async updateRegister(updatedData: any, id: any, transaction = {}) {
 		return database[this.modelName].update(updatedData, { where: { id } }, transaction);
 	}
 
-	async updateRegisters(updatedData, where, transaction = {}) {
+	async updateRegisters(updatedData: any, where: any, transaction = {}) {
 		return database[this.modelName].update(updatedData, { where }, transaction);
 	}
 
-	async deleteRegister(id) {
+	async deleteRegister(id: any) {
 		return database[this.modelName].destroy({ where: { id } });
 	}
 
-	async restoreRegister(id) {
+	async restoreRegister(id: any) {
 		return database[this.modelName].restore({ where: { id } });
 	}
 
-	async findAndCountResgisters(where = {}, aggregators) {
+	async findAndCountResgisters(where = {}, aggregators: any) {
 		return database[this.modelName].findAndCountAll({ where, ...aggregators });
 	}
 }

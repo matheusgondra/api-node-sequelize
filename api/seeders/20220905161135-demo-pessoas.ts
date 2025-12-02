@@ -1,5 +1,5 @@
 export default {
-	async up(queryInterface, _Sequelize) {
+	async up(queryInterface: any, _Sequelize: any) {
 		await queryInterface.bulkInsert(
 			"Pessoas",
 			[
@@ -55,7 +55,7 @@ export default {
 			{}
 		);
 	},
-	async down(queryInterface, _Sequelize) {
+	async down(queryInterface: any, _Sequelize: any) {
 		await queryInterface.bulkDelete("Pessoas", null, {});
 	}
 };

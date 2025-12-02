@@ -1,8 +1,8 @@
 import { Model } from "sequelize";
 
-export default (sequelize, DataTypes) => {
+export default (sequelize: any, DataTypes: any) => {
 	class Resgistrations extends Model {
-		static associate(models) {
+		static associate(models: any) {
 			Resgistrations.belongsTo(models.Pessoas, {
 				foreignKey: "estudante_id"
 			});

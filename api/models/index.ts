@@ -1,20 +1,20 @@
 import { readdirSync } from "node:fs";
 import { basename as _basename, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import Sequelize, { DataTypes } from "sequelize";
+import { DataTypes, Sequelize } from "sequelize";
 
 const env = process.env.NODE_ENV || "development";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const basename = _basename(__filename);
 
-const configModue = await import(new URL("../config/config.js", import.meta.url));
+const configModue = await import(new URL("../config/config.js", import.meta.url).toString());
 const config = configModue.default[env];
-const db = {};
+const db: any = {};
 
-let sequelize;
+let sequelize: Sequelize;
 if (config.use_env_variable) {
-	sequelize = new Sequelize(process.env[config.use_env_variable], config);
+	sequelize = new Sequelize(process.env[config.use_env_variable] as string, config);
 } else {
 	sequelize = new Sequelize(config.database, config.username, config.password, config);
 }

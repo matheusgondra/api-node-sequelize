@@ -1,5 +1,5 @@
 export default {
-	up: (queryInterface, _Sequelize) => {
+	up: (queryInterface: any, _Sequelize: any) => {
 		return queryInterface.bulkInsert(
 			"Turmas",
 			[
@@ -36,7 +36,7 @@ export default {
 		);
 	},
 
-	down: (queryInterface, _Sequelize) => {
+	down: (queryInterface: any, _Sequelize: any) => {
 		return queryInterface.bulkDelete("Turmas", null, {});
 	}
 };

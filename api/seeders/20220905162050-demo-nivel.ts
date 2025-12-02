@@ -1,5 +1,5 @@
 export default {
-	up: (queryInterface, _Sequelize) => {
+	up: (queryInterface: any, _Sequelize: any) => {
 		return queryInterface.bulkInsert(
 			"Niveis",
 			[
@@ -23,7 +23,7 @@ export default {
 		);
 	},
 
-	down: (queryInterface, _Sequelize) => {
+	down: (queryInterface: any, _Sequelize: any) => {
 		return queryInterface.bulkDelete("Niveis", null, {});
 	}
 };

@@ -1,8 +1,8 @@
 import { Model } from "sequelize";
 
-export default (sequelize, DataTypes) => {
+export default (sequelize: any, DataTypes: any) => {
 	class People extends Model {
-		static associate(models) {
+		static associate(models: any) {
 			People.hasMany(models.Turmas, {
 				foreignKey: "docente_id"
 			});
@@ -18,7 +18,7 @@ export default (sequelize, DataTypes) => {
 			nome: {
 				type: DataTypes.STRING,
 				validate: {
-					validatorFunction: (data) => {
+					validatorFunction: (data: any) => {
 						if (data.length < 3) {
 							throw new Error("O campo nome deve ter mais de 3 caracteres");
 						}
@@ -30,7 +30,6 @@ export default (sequelize, DataTypes) => {
 				type: DataTypes.STRING,
 				validate: {
 					isEmail: {
-						args: true,
 						msg: "Dado do tipo e-mail inválido"
 					}
 				}
