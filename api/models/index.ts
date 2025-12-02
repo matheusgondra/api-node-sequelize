@@ -10,7 +10,7 @@ const basename = _basename(__filename);
 
 const configModue = await import(new URL("../config/config.js", import.meta.url).toString());
 const config = configModue.default[env];
-const db: any = {};
+const database: any = {};
 
 let sequelize: Sequelize;
 if (config.use_env_variable) {
@@ -19,25 +19,25 @@ if (config.use_env_variable) {
 	sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
-readdirSync(__dirname)
-	.filter((file) => {
-		return file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js";
-	})
-	.forEach(async (file) => {
-		const moduleUrl = new URL(file, import.meta.url);
-		const module = await import(moduleUrl.href);
-		const defineModel = module.default;
-		const model = defineModel(sequelize, DataTypes);
-		db[model.name] = model;
-	});
+const files = readdirSync(__dirname).filter((file) => {
+	return file.indexOf(".") !== 0 && file !== basename && (file.slice(-3) === ".js" || file.slice(-3) === ".ts");
+});
 
-Object.keys(db).forEach((modelName) => {
-	if (db[modelName].associate) {
-		db[modelName].associate(db);
+for (const file of files) {
+	const moduleUrl = new URL(file, import.meta.url);
+	const module = await import(moduleUrl.href);
+	const defineModel = module.default;
+	const model = defineModel(sequelize, DataTypes);
+	database[model.name] = model;
+}
+
+Object.keys(database).forEach((modelName) => {
+	if (database[modelName].associate) {
+		database[modelName].associate(database);
 	}
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+database.sequelize = sequelize;
+database.Sequelize = Sequelize;
 
-export default db;
+export { database };

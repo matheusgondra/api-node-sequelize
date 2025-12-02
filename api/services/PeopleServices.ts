@@ -1,7 +1,9 @@
-import database from "../models/index.js";
+import { database } from "../models/index.js";
 import Services from "./Services.js";
 
 class PeopleServices extends Services {
+	private readonly registers: Services;
+
 	constructor() {
 		super("Pessoas");
 		this.registers = new Services("Matriculas");
@@ -15,8 +17,8 @@ class PeopleServices extends Services {
 		return database[this.modelName].scope("todos").findAll({ where });
 	}
 
-	async cancelPersonAndRegisters(studentId) {
-		return database.sequelize.transaction(async (transaction) => {
+	async cancelPersonAndRegisters(studentId: number) {
+		return database.sequelize.transaction(async (transaction: any) => {
 			await super.updateRegister({ ativo: false }, studentId, { transaction });
 			await this.registers.updateRegisters({ status: "cancelado" }, { estudante_id: studentId }, { transaction });
 		});

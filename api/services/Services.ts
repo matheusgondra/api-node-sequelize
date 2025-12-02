@@ -1,7 +1,7 @@
-import database from "../models/index.js";
+import { database } from "../models/index.js";
 
 class Services {
-	private modelName: any;
+	protected modelName: any;
 
 	constructor(modelName: any) {
 		this.modelName = modelName;

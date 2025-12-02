@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./api/index.js",
-    "dev": "nodemon ./api/index.js",
+    "dev": "tsx --watch ./api/index.ts",
     "sequelize:create": "sequelize db:create",
     "sequelize:migrate": "sequelize db:migrate",
     "sequelize:seed": "sequelize db:seed:all",
@@ -18,7 +18,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.6.1",
-    "express": "^4.21.2",
+    "express": "^5.2.1",
     "mysql2": "^2.3.3",
     "pg": "^8.16.3",
     "sequelize": "^6.37.7",
